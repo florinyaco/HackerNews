@@ -1,25 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useEffect, useState} from "react";
+import StoryList from "./components/StoryList/StoryList";
+import './Styles/Style.css'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [storyIds, setStoryIds] = useState([])
+
+    const handleResult = (res) => {
+        const storyIds = res
+        const randomizedIds = storyIds.sort(() => 0.5 - Math.random()).slice(0, 10)
+        setStoryIds(randomizedIds)
+    }
+
+    useEffect(() => {
+        fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+            .then(res => res.json())
+            .then(result => {
+                    handleResult(result);
+                })
+    }, [])
+
+    return (
+        <div className="container">
+            <StoryList ids={storyIds}/>
+        </div>
+    );
 }
 
 export default App;
