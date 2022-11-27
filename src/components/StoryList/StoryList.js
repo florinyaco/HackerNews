@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-import Story from "../story/Story";
+import Story from "../Story/Story";
+import classes from "./StoryList.module.css"
 
 function StoryList(props) {
     const {ids} = props;
@@ -23,7 +24,7 @@ function StoryList(props) {
     }, [ids]);
 
     return (
-        <div>
+        <div className={classes.container}>
             {storiesArray.map(item =>
             <Story
                 key={item.id}

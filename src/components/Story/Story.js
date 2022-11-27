@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
-import '../../Styles/Style.css'
+import classes from './Story.module.css';
 import hnImage from '../../hn.PNG'
+
 
 function Story(props) {
     const {title, URL, timestamp, score, authorId} = props;
@@ -36,20 +37,20 @@ function Story(props) {
     }, [authorId])
 
     return (
-        <div className='card'>
+        <div className={classes.card}>
             <img src={hnImage}/>
-            <div className='card-text'>
+            <div className={classes.cardText}>
                 <h3>{title}</h3>
-                <div className='flex-horizontal'>
-                    <div className='story-score'>Score: {score}</div>
-                    <div className='date'>{convertTimestamp(timestamp)}</div>
+                <div className={classes.flexHorizontal}>
+                    <div className={classes.storyScore}>Score: {score}</div>
+                    <div className={classes.date}>{convertTimestamp(timestamp)}</div>
                 </div>
-                <div className='link'>
+                <div className={classes.link}>
                     {URL ? <a href={URL}>{URL}</a> : 'Sorry no link available :('}
                 </div>
-                <div className='flex-horizontal'>
-                    <div className='author'>By: {author.id}</div>
-                    <div className='karma'>Karma: {author.karmaScore}</div>
+                <div className={classes.flexHorizontal}>
+                    <div className={classes.author}>By: {author.id}</div>
+                    <div className={classes.karma}>Karma: {author.karmaScore}</div>
                 </div>
             </div>
         </div>
