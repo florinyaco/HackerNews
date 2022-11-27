@@ -6,6 +6,7 @@ function StoryList(props) {
     const {ids} = props;
     const [storiesArray, setStoriesArray] = useState([]);
 
+    //Get all stories from array by id
     useEffect(() => {
         const promises = [];
         for (let i = 0; i < ids.length; i++) {
@@ -14,11 +15,13 @@ function StoryList(props) {
         Promise.all(promises)
             .then(responses => {
                 return Promise.all(responses.map(r => r.json())).then(stories => {
+                    //sort stories asc by score
                     stories.sort((a, b) => a.score - b.score);
                     setStoriesArray(stories)
                 })
             })
             .catch((e) => {
+                //error handling
                 console.log(e)
             })
     }, [ids]);
