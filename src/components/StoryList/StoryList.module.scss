@@ -10,6 +10,12 @@
 
 @media (max-width:768px) {
   .container{
+    width: 90%;
+  }
+}
+
+@media (max-width:1010px) {
+  .container{
     width: 100%;
   }
 }
